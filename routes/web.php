@@ -21,4 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/test','TestController@index');
+
+    Route::group(['middleware'=> 'role:Admin'],function (){
+        Route::get('/middle', function () {
+            return view('welcome');
+        });
+});
